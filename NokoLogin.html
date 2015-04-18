@@ -26,6 +26,13 @@
 					font-family: Arial;
 					color: #BF3EFF;
 				}
+				#errorDialog {
+					visibility: hidden;
+					font-family:Arial;
+					font-weight:bold;
+					font-size:12px;
+					color:red;
+				}
 			</style>
 		</head>
 		<body bgcolor="white">
@@ -59,7 +66,7 @@
 						<br>
 							Make One!        
 						<br> 
-						<form id="newUser">
+						<form id="newUser" method="post">
 							Username: 
 							<input type="text" name="Username">   
 							<br>
@@ -73,24 +80,32 @@
 							<input type="password" name="pwd"> 
 							<br>
 							Confirm Password: 
-							<input type="password" name="pwd"> 
+							<input type="password" name="confirmpwd"> 
 							<br>
 							E-mail: 
 							<input type="email" name="email">   
 							<br> 
 							Birthday (month and year): 
-							<input type="month" name="bdaymonth">  
+							<input type="month" name="bday">  
 							<br>
-							<input type="radio" name="sex" value="male">
+							<input type="radio" name="male" value="male">
 							Male     
-							<input type="radio" name="sex" value="female">
+							<input type="radio" name="female" value="female">
 							Female    
 							<br>
 							<br>
-							<input type="submit" value="Submit"> 
+							<button type="button" onClick="submitData()">
+							Submit
+							</button>
+							<br>
 						</form>
+						<br>
+						<div id="errorDialog">
+						</div>
 					</b>
 				</div>
 			</div>
+			<script src="loginScript.js">
+			</script>
 		</body>
 	</html>
