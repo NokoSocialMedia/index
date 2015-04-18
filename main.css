@@ -1,0 +1,28 @@
+#banner{
+	text-align:right;
+	color:white;
+	background:#BF3EFF;
+	position:absolute;
+	width:100%;
+	min-width:1000px;
+	height:75px;
+	left:0px;
+	top:0px;
+	right:0px;
+}
+#nokologo{
+	text-align:left;
+	color:white;
+	background:#BF3EFF;
+	position:absolute;
+	margin-left:0px;
+	margin-top:0px;
+	top:0px;
+	left:20px;
+}
+#logintable{
+	position:absolute;
+	text-align:right;
+	top:25px;
+	right:20px;
+}
