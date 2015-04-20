@@ -1,5 +1,9 @@
 var dev = true;
 
+window.onbeforeunload = function(){
+	eraseLocalData();
+}
+
 var userName, firstName, lastName, password, email, birthDay, male;
 var errorBox;
 function submitData(){
@@ -64,7 +68,34 @@ function setData(user, f, l, p, e, b, m){
 		email = e;
 		birthDay = b;
 		male = m;
+		localStorage.setItem("UserName", userName);
+		localStorage.setItem("Name", firstName + " " + lastName);
+		localStorage.setItem("Email", email);
+		localStorage.setItem("Birthday", birthDay);
+		var gender;
+		if(male){
+			gender = "Male";
+		}
+		else{
+			gender = "Female";
+		}
+		localStorage.setItem("Gender", gender);
+		
+		alert(
+			"UserName: " + localStorage.getItem("UserName") + "\n" +
+			"Name: " + localStorage.getItem("Name") + "\n" +
+			"Email: " + localStorage.getItem("Email") + "\n" +
+			"Birthday: " + localStorage.getItem("Birthday") + "\n" +
+			"Gender: " + localStorage.getItem("Gender")
+		);
 	}
+}
+function eraseLocalData(){
+	localStorage.removeItem("UserName");
+	localStorage.removeItem("Name");
+	localStorage.removeItem("Email");
+	localStorage.removeItem("Birthday");
+	localStorage.removeItem("Gender");
 }
 function showError(error){
 	errorBox = document.getElementById("errorDialog");
