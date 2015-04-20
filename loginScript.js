@@ -20,9 +20,6 @@ function submitData(){
 	else if(formValues['pwd'].value !== formValues['confirmpwd'].value){
 		showError("Password Not Same");
 	}
-	else if(!checkValidPwd(formValues['pwd'].value)){
-		showError("Weak Password");
-	}
 	else{
 		hideErrorBox();
 		setData(
@@ -32,17 +29,6 @@ function submitData(){
 			formValues['male'].checked
 		);
 		document.getElementById("newUser").submit();
-	}
-}
-function checkValidPwd(password){
-	if(password.length < 6){
-		return false;
-	}
-	else if(password.toLowerCase() === password){
-		return false;
-	}
-	else{
-		return true;
 	}
 }
 function getFormLength(formElementsArray){
@@ -119,10 +105,7 @@ function showError(error){
 			errorBox.innerHTML = "Please enter data into this form!";
 			break;
 		case "Password Not Same":
-			errorBox.innerHTML = "Passwords do not match.";
-			break;
-		case "Weak Password":
-			errorBox.innerHTML = "We recommend a password 6-20 characters long <br>with at least one upper-case letter.";
+			errorBox.innerHTML = "Passwords do not match."
 			break;
 		default:
 			errorBox.innerHTML = "Please enter a " + error;
