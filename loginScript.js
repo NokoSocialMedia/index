@@ -56,13 +56,15 @@ function getFormLength(formElementsArray){
 	return length;
 }
 function setData(user, f, l, p, e, b, m){
-	userName = user;
-	firstName = f;
-	lastName = l;
-	password = p;
-	email = e;
-	birthDay = b;
-	male = m;
+	if(dev){
+		userName = user;
+		firstName = f;
+		lastName = l;
+		password = p;
+		email = e;
+		birthDay = b;
+		male = m;
+	}
 }
 function showError(error){
 	errorBox = document.getElementById("errorDialog");
