@@ -12,7 +12,30 @@ function submitData(){
 	var formValues = document.getElementById("newUser").elements;
 	var formLength = getFormLength(formValues);
 	if(formLength < 8 && formLength > 0){
-		showError(dataTypes[formLength]);
+	    if(formValues['Username'].value === ''){
+             showError(dataTypes[0]);
+        }    
+        else if(formValues['firstname'].value === ''){
+             showError(dataTypes[1]);
+        }
+        else if(formValues['lastname'].value === ''){
+             showError(dataTypes[2]);
+        }
+        else if(formValues['pwd'].value === ''){
+             showError(dataTypes[3]);
+        }
+        else if(formValues['confirmpwd'].value === ''){
+             showError(dataTypes[4]);
+        }
+        else if(formValues['email'].value === ''){
+             showError(dataTypes[5]);
+        }
+        else if(formValues['bday'].value === ''){
+             showError(dataTypes[6]);
+        }
+        else if(formValues['male'].checked === false && formValues['female'].checked === false){
+             showError(dataTypes[7]);
+        }
 	}
 	else if(formLength === 0){
 		showError("No Data");
