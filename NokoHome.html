@@ -7,31 +7,6 @@
 				NOKO 
 			</title>
 			<style>
-				#sidebartable{
-					background:#BF3EFF;
-					position:fixed;
-					top:300px;
-					left:0px;
-					height:150px;
-					width:80px;
-				}
-				a.sidebar{
-					color: white;
-					text-decoration:none;
-				}
-				a.sidebar:link {
-					color: white;
-					text-decoration:none;
-				}
-				a.sidebar:active {
-					text-decoration:none;
-					color: white;
-				}
-				a.sidebar:hover {
-					color: white;
-					font-weight: bold;
-					border-bottom: 1px solid white;
-				}
 				#main-page-content{
 					position:relative;
 					top:78px;
@@ -63,8 +38,10 @@
 				}
 				</style>
 		</head>
-		<body bgcolor="#E6E6E6">
+		<body bgcolor="#E6E6E6" onLoad="Account.loadPageComponents()">
 			<div id="banner">
+			</div>
+            <div id="accountBox">
 			</div>
 			<div id="nokologo">
 				<a href="nokohome.html"> 
@@ -129,6 +106,7 @@
 					</div> 
 				</center>
 			</div>
-
+		<script src="accountScript.js">
+		</script>
 		</body>
 	</html>
