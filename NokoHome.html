@@ -7,31 +7,6 @@
 				NOKO 
 			</title>
 			<style>
-				#sidebartable{
-					background:#BF3EFF;
-					position:fixed;
-					top:300px;
-					left:0px;
-					height:150px;
-					width:80px;
-				}
-				a.sidebar{
-					color: white;
-					text-decoration:none;
-				}
-				a.sidebar:link {
-					color: white;
-					text-decoration:none;
-				}
-				a.sidebar:active {
-					text-decoration:none;
-					color: white;
-				}
-				a.sidebar:hover {
-					color: white;
-					font-weight: bold;
-					border-bottom: 1px solid white;
-				}
 				#main-page-content{
 					position:relative;
 					top:78px;
@@ -63,8 +38,23 @@
 				}
 				</style>
 		</head>
-		<body bgcolor="#E6E6E6">
+		<body bgcolor="#E6E6E6" onLoad="Account.loadPageComponents();addListeners();">
 			<div id="banner">
+			</div>
+            <div id="logintable"> 
+				<form> 
+					<font size="3" face="arial" color="white"> 
+						<br> Username: 
+						<input type="text" style="Font-size:16" name="username">
+							Password: 
+						<input type="password" name="pwd"> 
+					</font>
+					<input type="submit" value="Log in" >
+					<br> 
+					<br>
+				</form>
+			</div>
+            <div id="accountBox">
 			</div>
 			<div id="nokologo">
 				<a href="nokohome.html"> 
@@ -122,13 +112,21 @@
 			<div id="main-page-content"> 
 				<center>
 					<div id="main-page-post1"> 
-						Welcome to Noko's temporary home page!  We are currently developing all of the webpages, so if you were redirected here, you may
-						want to return when Noko has integrated users coded with Javascript.  Actually, if this text is still here, you shouldn't be on this page at all!
+						Welcome to NOKO's temporary home page!  We are currently developing all of the webpages, so if you were redirected here, you may
+						want to return when NOKO has integrated users coded with Javascript.  Actually, if this text is still here, you shouldn't be on this page at all!
 						We will edit this page as soon as we reach the major social networking stage.
-						<br> --The noko team.
+						<br> --The NOKO team.
 					</div> 
 				</center>
 			</div>
-
+            <div id="accountDropDown">
+				<button type="button" id="signOut">
+					Sign Out
+				</button>
+			</div>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js">
+		</script>
+		<script src="accountScript.js">
+		</script>
 		</body>
 	</html>

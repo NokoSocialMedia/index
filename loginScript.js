@@ -1,18 +1,37 @@
-var dev = true;
-
-window.onbeforeunload = function(){
-	eraseLocalData();
-}
-
-var userName, firstName, lastName, password, email, birthDay, male;
+const dev = true;
+const usingLog = true;
 var errorBox;
+
 function submitData(){
 	errorBox = document.getElementById("errorDialog");
 	var dataTypes = ["Username", "First Name", "Last Name", "Password", "Confirm Password", "Email", "Birthday", "Gender"];
 	var formValues = document.getElementById("newUser").elements;
 	var formLength = getFormLength(formValues);
 	if(formLength < 8 && formLength > 0){
-		showError(dataTypes[formLength]);
+	    if(formValues['Username'].value === ''){
+             showError(dataTypes[0]);
+        }    
+        else if(formValues['firstname'].value === ''){
+             showError(dataTypes[1]);
+        }
+        else if(formValues['lastname'].value === ''){
+             showError(dataTypes[2]);
+        }
+        else if(formValues['pwd'].value === ''){
+             showError(dataTypes[3]);
+        }
+        else if(formValues['confirmpwd'].value === ''){
+             showError(dataTypes[4]);
+        }
+        else if(formValues['email'].value === ''){
+             showError(dataTypes[5]);
+        }
+        else if(formValues['bday'].value === ''){
+             showError(dataTypes[6]);
+        }
+        else if(formValues['male'].checked === false && formValues['female'].checked === false){
+             showError(dataTypes[7]);
+        }
 	}
 	else if(formLength === 0){
 		showError("No Data");
@@ -32,8 +51,10 @@ function submitData(){
 			formValues['male'].checked
 		);
 		document.getElementById("newUser").submit();
+		location.reload();
 	}
 }
+
 function checkValidPwd(password){
 	if(password.length < 6){
 		return false;
@@ -45,6 +66,7 @@ function checkValidPwd(password){
 		return true;
 	}
 }
+
 function getFormLength(formElementsArray){
 	var elements = formElementsArray;
 	var length = 0;
@@ -73,43 +95,37 @@ function getFormLength(formElementsArray){
 	}
 	return length;
 }
-function setData(user, f, l, p, e, b, m){
-	if(dev){
-		userName = user;
-		firstName = f;
-		lastName = l;
-		password = p;
-		email = e;
-		birthDay = b;
-		male = m;
-		localStorage.setItem("UserName", userName);
-		localStorage.setItem("Name", firstName + " " + lastName);
-		localStorage.setItem("Email", email);
-		localStorage.setItem("Birthday", birthDay);
+
+function setData(user, f, l, p, e, b, m, p){
+	if(dev && usingLog){
+		Account.setLoggedIn(true);
+		Account.setStorageItem("UserName", user);
+		Account.setStorageItem("Name", f + " " + l);
+		Account.setStorageItem("Email", e);
+		Account.setStorageItem("Birthday", b);
+		if(Account.getStorageItem("PasswordList") === null || Account.getStorageItem("PasswordList") === undefined){
+			Account.setStorageItem("PasswordList", []);
+		}
+		var passwordList = Account.getStorageItem("PasswordList");
+		passwordList[passwordList.length] = CryptoJS.DES.encrypt(p, "Temporary123");
+		passwordList[passwordList.length] = CryptoJS.DES.encrypt(user, "Temporary123"); 		
+		Account.setStorageItem("PasswordList", passwordList);
 		var gender;
-		if(male){
+		if(m){
 			gender = "Male";
 		}
 		else{
 			gender = "Female";
 		}
-		localStorage.setItem("Gender", gender);
-		
+		Account.setStorageItem("Gender", gender);
 		alert(
-			"UserName: " + localStorage.getItem("UserName") + "\n" +
-			"Name: " + localStorage.getItem("Name") + "\n" +
-			"Email: " + localStorage.getItem("Email") + "\n" +
-			"Birthday: " + localStorage.getItem("Birthday") + "\n" +
-			"Gender: " + localStorage.getItem("Gender")
+			"UserName: " + Account.getStorageItem("UserName") + "\n" +
+			"Name: " + Account.getStorageItem("Name") + "\n" +
+			"Email: " + Account.getStorageItem("Email") + "\n" +
+			"Birthday: " + Account.getStorageItem("Birthday") + "\n" +
+			"Gender: " + Account.getStorageItem("Gender")
 		);
 	}
-}
-function eraseLocalData(){
-	localStorage.removeItem("UserName");
-	localStorage.removeItem("Name");
-	localStorage.removeItem("Email");
-	localStorage.removeItem("Birthday");
-	localStorage.removeItem("Gender");
 }
 function showError(error){
 	errorBox = document.getElementById("errorDialog");
