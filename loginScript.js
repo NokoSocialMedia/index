@@ -96,7 +96,7 @@ function getFormLength(formElementsArray){
 	return length;
 }
 
-function setData(user, f, l, p, e, b, m, p){
+function setData(user, f, l, p, e, b, m){
 	if(dev && usingLog){
 		Account.setLoggedIn(true);
 		Account.setStorageItem("UserName", user);

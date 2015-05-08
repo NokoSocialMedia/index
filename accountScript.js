@@ -51,6 +51,5 @@ function addListeners(){
 	});
     document.getElementById("signOut").addEventListener("click", function(){
         Account.signOut();
-    });
-    
+    });   
 }
